@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import MyCustomComponent from './MyCustomComponent';
+import MyFunctionalComp from './MyFunctionalComp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <MyCustomComponent/>
+    <App color="green" size="11" onClickEvent={ ()=>{
+      console.log("This is the onClickEvent of App!!!")
+    } }/>
+    {/* <MyCustomComponent/> */}
+    {/* <MyFunctionalComp/> */}
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

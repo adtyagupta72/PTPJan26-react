@@ -17,4 +17,3 @@ class MyCustomComponent extends React.Component
     }
 }
 export default MyCustomComponent
-
