@@ -37,27 +37,43 @@ import React from 'react';
 
 class App extends React.Component
 {
-  state = {counter: 0}
+  state = {counter: 1}
+  counter = 0
   constructor(props)
   {
     super(props)
     console.log(props)
   }
 
+  multipleOfFive = {
+    color: "red"
+  }
+
+  otherMultiples = {
+    color: "black"
+  }
+  
   render()
   {
+    console.log("Render: Counter is-", this.counter)
     // return <h1>Hello Class component</h1>
     return <div>
              <h1 style={{color:this.props.color}}>This is my App Functional Component</h1>
              <br></br>
              <button onClick={()=>this.props.onClickEvent()}>My Button</button>
              <br/>
-             <div>
+             <div style={this.state.counter % 5 == 0 ? this.multipleOfFive : this.otherMultiples}>
               Counter: {this.state.counter}
+              Counter1: {this.counter}
               <br/>
               <button onClick={()=>{
                 this.setState({counter:(this.state.counter+1)})
+                //Triggers re-rendering of the component => updating VDOM
                 // this.state.counter++
+                console.log("Counter: ", this.counter)
+                this.counter++
+                //Don't triggers anything!
+                console.log("Counter: ", this.counter)
               }}>Increment Counter</button>
              </div>
            </div>
