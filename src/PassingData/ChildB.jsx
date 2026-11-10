@@ -33,7 +33,14 @@ class ChildB extends React.Component
             <div>
                 Data incoming from Parent: {this.props.counter}
                 <br/>
-                <button onClick={()=>this.props.callback()}>Increment Counter A</button>
+                <button id="ChildB" onClick={()=>{this.props.callback()}}>Increment Counter B</button>
+                <br/>
+                <input type="text" placeholder="Something for Parent" id="childB"/>
+                <br/>
+                <button onClick={()=>{
+                    this.props.messageFunction(document.getElementById("childB").value)
+                    // console.log("childA: ", document.getElementById("childA").value)
+                }}>Send to Parent</button>
             </div>
         </div>
     }

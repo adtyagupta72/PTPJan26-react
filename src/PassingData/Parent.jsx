@@ -44,7 +44,12 @@ import ChildB from "./ChildB"
 
 class Parent extends React.Component
 {
-    state = {counterA: 100, counterB: 10}
+    state = {
+        counterA: 100, 
+        counterB: 10, 
+        messageA:"", 
+        messageB:""
+    }
     constructor()
     {
         super()
@@ -52,16 +57,27 @@ class Parent extends React.Component
 
     incrementA = () =>
     {
-        this.setState({counterA: this.state.counterA+1})
+        this.setState({...this.state, counterA: this.state.counterA+1})
     }
 
     incrementB = () =>
     {
-        this.setState({counterB: this.state.counterB+1})
+        this.setState({...this.state, counterB: this.state.counterB+1})
+    }
+
+    messageFromA = (messageA)=>     //Callback function to read child's message
+    {
+        this.setState({...this.state, messageA: messageA})
+    }
+
+    messageFromB = (messageB)=>     //Callback function to read child's message
+    {
+        this.setState({...this.state, messageB: messageB})
     }
 
     render()
     {
+        // console.log("State: ", this.state)
         return <div>
             <h1>Parent Component</h1>
             <p>This is the parent component.</p>
@@ -69,11 +85,15 @@ class Parent extends React.Component
                 <label>
                     Child component incoming
                     <br/>
-                    <ChildA counter={this.state.counterA} callback={this.incrementA}/>
+                    <ChildB counter={this.state.counterB} callback={this.incrementB} messageFunction={this.messageFromB}/>
                     <br/>
-                    <ChildB counter={this.state.counterB} callback={this.incrementB}/>
+                    <ChildA counter={this.state.counterA} callback={this.incrementA} messageFunction={this.messageFromA}/>
                 </label>
             </div>
+
+            <label>Message from A: {this.state.messageA ? this.state.messageA : "No message yet"}</label>
+            <br/>
+            <label>Message from B: {this.state.messageB  ? this.state.messageA : "No message yet"}</label>
         </div>
     }
 }
